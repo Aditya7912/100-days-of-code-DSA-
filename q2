@@ -1,30 +1,26 @@
-#include <stdio.h>
+#include 
 
 int main() {
     int n, pos;
-
-    // Read number of elements
+    int arr[100];
+    
     scanf("%d", &n);
-
-    int arr[n];
-
-    // Read array elements
+    
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
-
-    // Read position to delete (1-based)
+    
     scanf("%d", &pos);
-
-    // Shift elements to the left from position
+    
+    // Shift elements left
     for (int i = pos - 1; i < n - 1; i++) {
         arr[i] = arr[i + 1];
     }
-
-    // Print updated array
+    
     for (int i = 0; i < n - 1; i++) {
-        printf("%d ", arr[i]);
+        printf("%d", arr[i]);
+        if (i < n - 2) printf(" ");
     }
-
+    printf("\n");
+    
     return 0;
-}
