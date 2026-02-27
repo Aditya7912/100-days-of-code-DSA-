@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int m, n;
+
+    // Read number of rows and columns
+    cin >> m >> n;
+
+    int A[m][n], B[m][n], Sum[m][n];
+
+    // Input first matrix
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> A[i][j];
+        }
+    }
+
+    // Input second matrix
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> B[i][j];
+        }
+    }
+
+    // Matrix addition
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            Sum[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+    // Print result matrix
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            cout << Sum[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
