@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    unordered_map<int,int> freq;
+    int prefixSum = 0;
+    int count = 0;
+
+    freq[0] = 1;   // to count subarrays starting from index 0
+
+    for(int i = 0; i < n; i++) {
+        prefixSum += arr[i];
+
+        if(freq.find(prefixSum) != freq.end()) {
+            count += freq[prefixSum];
+        }
+
+        freq[prefixSum]++;
+    }
+
+    cout << count;
+
+    return 0;
+}
