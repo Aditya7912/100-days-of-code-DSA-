@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n;
+
+    vector<int> nums(n);
+
+    for(int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    cin >> k;
+
+    k = k % n;   // handle k greater than n
+
+    vector<int> result(n);
+
+    for(int i = 0; i < n; i++) {
+        result[(i + k) % n] = nums[i];
+    }
+
+    for(int i = 0; i < n; i++) {
+        cout << result[i] << " ";
+    }
+
+    return 0;
+}
