@@ -1,0 +1,102 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert node at end
+Node* insert(Node* head, int x) {
+    Node* newNode = new Node();
+    newNode->data = x;
+    newNode->next = NULL;
+
+    if(head == NULL)
+        return newNode;
+
+    Node* temp = head;
+    while(temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = newNode;
+    return head;
+}
+
+// Function to merge two sorted lists
+Node* mergeLists(Node* l1, Node* l2) {
+    Node* result = NULL;
+    Node* tail = NULL;
+
+    while(l1 != NULL && l2 != NULL) {
+        Node* newNode = new Node();
+
+        if(l1->data < l2->data) {
+            newNode->data = l1->data;
+            l1 = l1->next;
+        } else {
+            newNode->data = l2->data;
+            l2 = l2->next;
+        }
+
+        newNode->next = NULL;
+
+        if(result == NULL) {
+            result = tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    while(l1 != NULL) {
+        tail->next = new Node();
+        tail = tail->next;
+        tail->data = l1->data;
+        tail->next = NULL;
+        l1 = l1->next;
+    }
+
+    while(l2 != NULL) {
+        tail->next = new Node();
+        tail = tail->next;
+        tail->data = l2->data;
+        tail->next = NULL;
+        l2 = l2->next;
+    }
+
+    return result;
+}
+
+// Function to print list
+void printList(Node* head) {
+    while(head != NULL) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+int main() {
+    int n, m, x;
+
+    Node* list1 = NULL;
+    Node* list2 = NULL;
+
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        cin >> x;
+        list1 = insert(list1, x);
+    }
+
+    cin >> m;
+    for(int i = 0; i < m; i++) {
+        cin >> x;
+        list2 = insert(list2, x);
+    }
+
+    Node* merged = mergeLists(list1, list2);
+
+    printList(merged);
+
+    return 0;
+}
